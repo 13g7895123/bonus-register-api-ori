@@ -1,4 +1,4 @@
-projectName = 'api-ori'
+projectName = 'bonus-register-api-ori'
 
 up:
 	docker-compose up -d
