@@ -12,9 +12,9 @@ if (isset($_GET['action'])){
 
             MYPDO::$table = 'system_user';
             MYPDO::$where = [
-                'account' => $data['account'],
+                'account' => $post_data['account'],
                 // 'password' => hash('sha512', $data['password']),
-                'password' => $data['password'],
+                'password' => $post_data['password'],
                 'switch' => 1
             ];
             $result = MYPDO::first();
@@ -22,9 +22,8 @@ if (isset($_GET['action'])){
             if (empty($result)){
                 $return['success'] = false;
                 $return['msg'] = '帳號或密碼錯誤!';
-                $return['user']['id'] = $result['id'];
-                $return['user']['account'] = $data['account'];
-                $return['user']['name'] = $data['account'];
+                $return['user']['account'] = $post_data['account'];
+                $return['user']['name'] = $post_data['account'];
             }else{
                 $return['success'] = true;
                 // $return['user']['id'] = $result['id'];
