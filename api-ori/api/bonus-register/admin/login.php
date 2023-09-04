@@ -1,5 +1,5 @@
 <?php
-include_once(__DIR__ . '/../../__Class/ClassLoad.php');
+include_once(__DIR__ . '/../../../__Class/ClassLoad.php');
 include_once('./config.php');
 include_once('./tools.php');
 
