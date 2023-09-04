@@ -22,11 +22,14 @@ if (isset($_GET['action'])){
             if (empty($result)){
                 $return['success'] = false;
                 $return['msg'] = '帳號或密碼錯誤!';
+                $return['user']['id'] = $result['id'];
+                $return['user']['account'] = $data['account'];
+                $return['user']['name'] = $data['account'];
             }else{
                 $return['success'] = true;
-                $return['user']['id'] = $result['id'];
+                // $return['user']['id'] = $result['id'];
                 $return['user']['account'] = $result['account'];
-                $return['user']['name'] = $result['name'];
+                $return['user']['name'] = $result['password'];
             }
 
             echo json_encode($return);
