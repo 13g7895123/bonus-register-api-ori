@@ -1,0 +1,9 @@
+services:
+
+  api-ori :
+      container_name: api-ori
+      build: .
+      volumes:
+        - ./api-ori:/var/www/html
+      ports:
+        - 9090:80
