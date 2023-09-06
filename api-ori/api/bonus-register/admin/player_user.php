@@ -1,4 +1,8 @@
 <?php
+/* ===== test url =====
+ *http://170.187.229.132:9091/api/bonus-register/admin/player_user.php?action=player_user
+ * ===============*/
+
 include_once(__DIR__ . '/../../../__Class/ClassLoad.php');
 include_once(__DIR__ . '/../config.php');
 include_once(__DIR__ . '/../tools.php');
