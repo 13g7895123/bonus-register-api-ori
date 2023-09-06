@@ -17,7 +17,7 @@ if (isset($_GET['action'])){
             MYPDO::$table = 'player_user';
             $results = MYPDO::select();
 
-            if (empty($result)){
+            if (empty($results)){
                 $return['success'] = false;
                 $return['msg'] = '查無資料';
             }else{
