@@ -1,6 +1,8 @@
 <?php
 include_once(__DIR__ . '/../../__Class/ClassLoad.php');
 
+error_reporting(E_ERROR | E_PARSE);
+
 // DB
 MYPDO::$host = '139.162.15.125';
 MYPDO::$port = '3306';

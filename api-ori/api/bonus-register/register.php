@@ -3,8 +3,6 @@ include_once(__DIR__ . '/../../__Class/ClassLoad.php');
 include_once('./config.php');
 include_once('./tools.php');
 
-error_reporting(E_ERROR | E_PARSE);
-
 if (isset($_GET['action'])){
     switch($_GET['action']){
         case 'register':
