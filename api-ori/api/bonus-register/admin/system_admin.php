@@ -15,9 +15,9 @@ if (isset($_GET['action'])){
             $post_data = json_decode($json_data, true);     // string轉array
 
             MYPDO::$table = 'system_user';
-            MYPDO::$where = ['admin' => 0];
+            MYPDO::$where = ['admin' => 1];
             $results = MYPDO::select();
-
+            
             if (empty($results)){
                 $return['success'] = false;
                 $return['msg'] = '查無資料';
