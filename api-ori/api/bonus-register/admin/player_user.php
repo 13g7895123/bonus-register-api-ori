@@ -27,6 +27,25 @@ if (isset($_GET['action'])){
 
             echo json_encode($return);
             break;
+        case 'get_player_user':     // 透過ID查詢資料
+            // 取得 POST DATA
+            $json_data = file_get_contents('php://input');  // string
+            $post_data = json_decode($json_data, true);     // string轉array
+
+            MYPDO::$table = 'player_user';
+            MYPDO::$where = ['id' => $post_data['id']];
+            $result = MYPDO::first();
+
+            if (empty($result)){
+                $return['success'] = false;
+                $return['msg'] = '查無資料';
+            }else{
+                $return['success'] = true;
+                $return['data'] = $result;
+            }
+
+            echo json_encode($return);
+            break;
     }
 }
 ?>
