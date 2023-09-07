@@ -20,7 +20,7 @@ if (isset($_GET['action'])){
                 
                 MYPDO::$table = 'server';
                 MYPDO::$where = [
-                    'eng_name' => $server,
+                    'code_name' => $server,
                 ];
                 $result = MYPDO::first();
 
