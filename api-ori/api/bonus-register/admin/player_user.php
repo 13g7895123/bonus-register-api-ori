@@ -36,6 +36,7 @@ if (isset($_GET['action'])){
             MYPDO::$where = ['id' => $post_data['id']];
             $result = MYPDO::first();
 
+            $return['test'] = $post_data;
             if (empty($result)){
                 $return['success'] = false;
                 $return['msg'] = '查無資料';
