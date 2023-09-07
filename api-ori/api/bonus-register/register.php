@@ -22,6 +22,9 @@ if (isset($_GET['action'])){
             if (isset($post_data['birthday'])){
                 $birthday = str_replace('-', '/', substr($post_data['birthday'], 0, 10));
             }
+            if (isset($post_data['server'])){
+                $server = $post_data['birthday'];
+            }
 
             if ($phone != '' && $account != '' && $password != '' && $birthday != ''){
                 
@@ -33,12 +36,19 @@ if (isset($_GET['action'])){
                     $return['success'] = false;
                     $return['msg'] = '帳號已存在';
                 }else{
+
+                    $server_id = SYSAction::SQL_Data('server', 'code_name', $server, 'id');
+                    $server_name = SYSAction::SQL_Data('server', 'code_name', $server, 'name');
+
                     MYPDO::$table = 'player_user';
                     MYPDO::$data = [
                         'account' => $account,
                         'password' => $password,
                         'phone' => $phone,
                         'birthday' => $birthday,
+                        'server_id' => $server_id,
+                        'server_name' => $server_name,
+                        'server_code_name' => $server,
                         'switch' => 1,
                     ];
                     $insert_id = MYPDO::insert();
