@@ -23,7 +23,7 @@ if (isset($_GET['action'])){
                 $birthday = str_replace('-', '/', substr($post_data['birthday'], 0, 10));
             }
             if (isset($post_data['server'])){
-                $server = $post_data['birthday'];
+                $server = $post_data['server'];
             }
 
             if ($phone != '' && $account != '' && $password != '' && $birthday != ''){
