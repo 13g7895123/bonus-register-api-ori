@@ -53,7 +53,7 @@ if (isset($_GET['action'])){
             MYPDO::$data = [
                 'account' => $post_data['account'],
                 'password' => $post_data['password'],
-                // 'phone' => $post_data['phone'],
+                'phone' => $post_data['phone'],
                 'birthday' => $post_data['birthday'],
                 // 'server_text' => $post_data['server_text'],
             ];
