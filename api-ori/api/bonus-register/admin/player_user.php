@@ -11,8 +11,6 @@ if (isset($_GET['action'])){
     switch($_GET['action']){
         case 'player_user':     // 取得所有資料
             // 取得 POST DATA
-            // $json_data = file_get_contents('php://input');  // string
-            // $post_data = json_decode($json_data, true);     // string轉array
             $post_data = tools::post_data();
 
             MYPDO::$table = 'player_user';
@@ -29,9 +27,8 @@ if (isset($_GET['action'])){
             echo json_encode($return);
             break;
         case 'get_player_user':     // 透過ID查詢資料
-            // 取得 POST DATA
-            $json_data = file_get_contents('php://input');  // string
-            $post_data = json_decode($json_data, true);     // string轉array
+
+            $post_data = tools::post_data();    // 取得 POST DATA
 
             MYPDO::$table = 'player_user';
             MYPDO::$where = ['id' => $post_data['id']];
@@ -49,6 +46,24 @@ if (isset($_GET['action'])){
             echo json_encode($return);
             break;
         case 'edit_player_user':
+            
+            $post_data = tools::post_data();    // 取得 POST DATA
+
+            break;
+        case 'delete_player_user':
+        
+            $post_data = tools::post_data();    // 取得 POST DATA
+
+            MYPDO::$table = 'player_user';
+            MYPDO::$where = ['id' => $post_data['id']];
+            $del_count = MYPDO::del();
+
+            if ($del_count == 1){
+                $return['success'] = true;
+            }else{
+                $return['success'] = false;
+                $return['msg'] = '刪除資料異常';
+            }
             
             break;
     }
