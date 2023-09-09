@@ -48,6 +48,7 @@ if (isset($_GET['action'])){
         case 'edit_player_user':
             
             $post_data = tools::post_data();    // 取得 POST DATA
+            $return['data'] = $post_data;
 
             echo json_encode($return);
             break;
