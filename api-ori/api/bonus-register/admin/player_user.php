@@ -48,8 +48,21 @@ if (isset($_GET['action'])){
         case 'edit_player_user':
             
             $post_data = tools::post_data();    // 取得 POST DATA
-            $return['data'] = $post_data;
+            
+            MYPDO::$table = 'player_user';
+            MYPDO::$data = [
+                'account' => $post_data['account'],
+                'password' => $post_data['password'],
+                // 'phone' => $post_data['phone'],
+                'birthday' => $post_data['birthday'],
+                // 'server_text' => $post_data['server_text'],
+            ];
+            MYPDO::$where = ['id' => $post_data['id']];
+            $save_id = MYPDO::save();
 
+            $return['success'] = 'true';
+            // $return['data'] = $post_data;
+            $return['save_id'] = $save_id;
             echo json_encode($return);
             break;
         case 'delete_player_user':
