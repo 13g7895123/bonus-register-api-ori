@@ -58,6 +58,9 @@ if (isset($_GET['action'])){
             MYPDO::$where = ['id' => $post_data['id']];
             $del_count = MYPDO::del();
 
+            $return['success'] = true;
+            $return['test'] = $del_count;
+
             if ($del_count == 1){
                 $return['success'] = true;
             }else{
