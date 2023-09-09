@@ -78,6 +78,13 @@ class tools
         return $return_str;
     }
 
+    // 取得 Post Data
+    public static function post_data(){
+        $json_data = file_get_contents('php://input');  // string
+        $post_data = json_decode($json_data, true);     // string轉array
+        return $post_data;
+    }
+
     public static function test()
     {
         echo 'test123';
