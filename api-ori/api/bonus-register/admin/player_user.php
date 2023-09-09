@@ -49,6 +49,7 @@ if (isset($_GET['action'])){
             
             $post_data = tools::post_data();    // 取得 POST DATA
 
+            echo json_encode($return);
             break;
         case 'delete_player_user':
         
@@ -68,6 +69,7 @@ if (isset($_GET['action'])){
                 $return['msg'] = '刪除資料異常';
             }
             
+            echo json_encode($return);
             break;
     }
 }
