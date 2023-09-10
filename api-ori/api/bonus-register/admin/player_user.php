@@ -55,6 +55,7 @@ if (isset($_GET['action'])){
                 'password' => $post_data['password'],
                 'phone' => $post_data['phone'],
                 'birthday' => $post_data['birthday'],
+                'switch' => $post_data['switch'],
                 // 'server_text' => $post_data['server_text'],
             ];
             MYPDO::$where = ['id' => $post_data['id']];
