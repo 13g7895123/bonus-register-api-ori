@@ -93,7 +93,7 @@ if (isset($_GET['action'])){
 
             $post_data = tools::post_data();    // 取得 POST DATA
 
-            MYPDO::$table = 'player_user';
+            MYPDO::$table = 'system_admin';
             MYPDO::$where = ['id' => $post_data['id']];
             $del_count = MYPDO::del();
 
