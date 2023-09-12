@@ -98,7 +98,7 @@ if (isset($_GET['action'])){
             $del_count = MYPDO::del();
 
             $return['success'] = true;
-            $return['post_data'] = $post_data['id'];
+            $return['msg'] = '刪除資料成功';
             $return['test'] = $del_count;
 
             if ($del_count == 1){
