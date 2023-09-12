@@ -74,6 +74,29 @@ if (isset($_GET['action'])){
 
             echo json_encode($return);
             break;
+        case 'edit_server':
+            $post_data = tools::post_data();    // 取得 POST DATA
+
+            MYPDO::$table = 'server';
+            MYPDO::$data = [
+                'name' => $post_data['name'],
+                'code_name' => $post_data['code_name'],
+                'max_num' => $post_data['max_num'],
+                'db_name' => $post_data['db_name'],
+                'db_ip' => $post_data['db_ip'],
+                'db_port' => $post_data['db_port'],
+                'db_username' => $post_data['db_username'],
+                'db_password' => $post_data['db_password'],
+                'switch' => $post_data['switch'],
+            ];
+            MYPDO::$where = ['id' => $post_data['id']];
+            $save_id = MYPDO::insert();
+
+            $return['success'] = 'true';
+            $return['msg'] = '修改資料成功';
+            $return['save_id'] = $save_id;
+            echo json_encode($return);
+            break;
     }
 }
 ?>
