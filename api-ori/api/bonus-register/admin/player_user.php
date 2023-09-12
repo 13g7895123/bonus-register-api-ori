@@ -45,6 +45,24 @@ if (isset($_GET['action'])){
 
             echo json_encode($return);
             break;
+        case 'add_player_user':
+        
+            $post_data = tools::post_data();    // 取得 POST DATA
+            
+            MYPDO::$table = 'player_user';
+            MYPDO::$data = [
+                'account' => $post_data['account'],
+                'password' => $post_data['password'],
+                'phone' => $post_data['phone'],
+                'birthday' => $post_data['birthday'],
+                'switch' => $post_data['switch'],
+            ];
+            $insert_id = MYPDO::insert();
+
+            $return['success'] = 'true';
+            $return['insert_id'] = $insert_id;
+            echo json_encode($return);
+            break;
         case 'edit_player_user':
             
             $post_data = tools::post_data();    // 取得 POST DATA
