@@ -62,7 +62,6 @@ if (isset($_GET['action'])){
             $save_id = MYPDO::save();
 
             $return['success'] = 'true';
-            // $return['data'] = $post_data;
             $return['save_id'] = $save_id;
             echo json_encode($return);
             break;

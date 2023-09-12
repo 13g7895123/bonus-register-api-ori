@@ -43,6 +43,7 @@ if (isset($_GET['action'])){
 
             if ($insert_id > 0){
                 $return['success'] = 'true';
+                $return['msg'] = '新增資料成功';
                 $return['insert_id'] = $insert_id;
             }else{
                 $return['success'] = 'true';
