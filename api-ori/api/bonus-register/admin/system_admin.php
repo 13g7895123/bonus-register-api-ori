@@ -28,6 +28,67 @@ if (isset($_GET['action'])){
 
             echo json_encode($return);
             break;
+        case 'add_system_admin':
+            $post_data = tools::post_data();    // 取得 POST DATA
+
+            MYPDO::$table = 'system_admin';
+            MYPDO::$data = [
+                'name' => $post_data['name'],
+                'account' => $post_data['account'],
+                'password' => $post_data['password'],
+                'switch' => $post_data['switch'],
+                'last_login_time' => $post_data['last_login_time'],
+            ];
+            $insert_id = MYPDO::insert();
+
+            if ($insert_id > 0){
+                $return['success'] = 'true';
+                $return['insert_id'] = $insert_id;
+            }else{
+                $return['success'] = 'true';
+                $return['msg'] = '寫入資料庫錯誤';
+            }
+
+            echo json_encode($return);
+            break;
+        case 'edit_system_admin':
+            $post_data = tools::post_data();    // 取得 POST DATA
+
+            MYPDO::$table = 'system_admin';
+            MYPDO::$data = [
+                'name' => $post_data['name'],
+                'account' => $post_data['account'],
+                'password' => $post_data['password'],
+                'switch' => $post_data['switch'],
+                'last_login_time' => $post_data['last_login_time'],
+            ];
+            MYPDO::$where = ['id' => $post_data['id']];
+            $save_id = MYPDO::save();
+
+            $return['success'] = 'true';
+            $return['save_id'] = $save_id;
+            echo json_encode($return);
+            break;
+        case 'delete_system_admin':
+
+            $post_data = tools::post_data();    // 取得 POST DATA
+
+            MYPDO::$table = 'player_user';
+            MYPDO::$where = ['id' => $post_data['id']];
+            $del_count = MYPDO::del();
+
+            $return['success'] = true;
+            $return['test'] = $del_count;
+
+            if ($del_count == 1){
+                $return['success'] = true;
+            }else{
+                $return['success'] = false;
+                $return['msg'] = '刪除資料異常';
+            }
+
+            echo json_encode($return);
+            break;
     }
 }
 ?>
