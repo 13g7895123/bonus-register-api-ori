@@ -14,8 +14,7 @@ if (isset($_GET['action'])){
             $json_data = file_get_contents('php://input');  // string
             $post_data = json_decode($json_data, true);     // string轉array
 
-            MYPDO::$table = 'system_user';
-            MYPDO::$where = ['admin' => 1];
+            MYPDO::$table = 'system_admin';
             $results = MYPDO::select();
 
             if (empty($results)){
