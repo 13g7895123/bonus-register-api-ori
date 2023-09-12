@@ -55,7 +55,7 @@ if (isset($_GET['action'])){
                 'password' => $post_data['password'],
                 'phone' => $post_data['phone'],
                 'birthday' => $post_data['birthday'],
-                'switch' => $post_data['switch'],
+                'switch' => 1,
             ];
             $insert_id = MYPDO::insert();
 
