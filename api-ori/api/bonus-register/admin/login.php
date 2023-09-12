@@ -17,8 +17,10 @@ if (isset($_GET['action'])){
                 'switch' => 1
             ];
             $result = MYPDO::first();
+            $return['test'] = 1;
 
             if (empty($result)){
+                $return['test'] = 2;
                 MYPDO::$table = 'system_admin';
                 MYPDO::$where = [
                     'account' => $post_data['account'],
@@ -33,6 +35,7 @@ if (isset($_GET['action'])){
                     $return['user']['account'] = $post_data['account'];
                     $return['user']['name'] = $post_data['account'];
                 }else{
+                    $return['test'] = 3;
                     $return['success'] = true;
                     $return['user']['id'] = $result['id'];
                     $return['user']['account'] = $result['account'];
