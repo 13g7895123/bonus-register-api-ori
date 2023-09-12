@@ -97,6 +97,27 @@ if (isset($_GET['action'])){
             $return['save_id'] = $save_id;
             echo json_encode($return);
             break;
+        case 'delete_server':
+
+            $post_data = tools::post_data();    // 取得 POST DATA
+
+            MYPDO::$table = 'server';
+            MYPDO::$where = ['id' => $post_data['id']];
+            $del_count = MYPDO::del();
+
+            $return['success'] = true;
+            $return['msg'] = '刪除資料成功';
+            $return['test'] = $del_count;
+
+            if ($del_count == 1){
+                $return['success'] = true;
+            }else{
+                $return['success'] = false;
+                $return['msg'] = '刪除資料異常';
+            }
+
+            echo json_encode($return);
+            break;
     }
 }
 ?>
