@@ -90,7 +90,7 @@ if (isset($_GET['action'])){
                 'switch' => $post_data['switch'],
             ];
             MYPDO::$where = ['id' => $post_data['id']];
-            $save_id = MYPDO::insert();
+            $save_id = MYPDO::save();
 
             $return['success'] = 'true';
             $return['msg'] = '修改資料成功';
