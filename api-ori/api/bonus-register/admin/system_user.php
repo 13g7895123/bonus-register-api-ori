@@ -27,6 +27,11 @@ if (isset($_GET['action'])){
 
             echo json_encode($return);
             break;
+        case 'server_list':
+
+            
+            echo json_encode($return);
+            break;
     }
 }
 ?>

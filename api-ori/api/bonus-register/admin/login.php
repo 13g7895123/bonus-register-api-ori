@@ -13,22 +13,38 @@ if (isset($_GET['action'])){
             MYPDO::$table = 'system_user';
             MYPDO::$where = [
                 'account' => $post_data['account'],
-                // 'password' => hash('sha512', $data['password']),
                 'password' => $post_data['password'],
                 'switch' => 1
             ];
             $result = MYPDO::first();
 
             if (empty($result)){
-                $return['success'] = false;
-                $return['msg'] = '帳號或密碼錯誤!';
-                $return['user']['account'] = $post_data['account'];
-                $return['user']['name'] = $post_data['account'];
+                MYPDO::$table = 'system_admin';
+                MYPDO::$where = [
+                    'account' => $post_data['account'],
+                    'password' => $post_data['password'],
+                    'switch' => 1
+                ];
+                $result = MYPDO::first();
+
+                if (empty($result)){
+                    $return['success'] = false;
+                    $return['msg'] = '帳號或密碼錯誤!';
+                    $return['user']['account'] = $post_data['account'];
+                    $return['user']['name'] = $post_data['account'];
+                }else{
+                    $return['success'] = true;
+                    $return['user']['id'] = $result['id'];
+                    $return['user']['account'] = $result['account'];
+                    $return['user']['name'] = $result['password'];
+                    $return['user']['is_admin'] = 1;
+                }
             }else{
                 $return['success'] = true;
-                // $return['user']['id'] = $result['id'];
+                $return['user']['id'] = $result['id'];
                 $return['user']['account'] = $result['account'];
                 $return['user']['name'] = $result['password'];
+                $return['user']['is_admin'] = 0;
             }
 
             echo json_encode($return);
