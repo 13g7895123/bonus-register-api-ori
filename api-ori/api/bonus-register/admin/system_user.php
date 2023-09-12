@@ -29,7 +29,28 @@ if (isset($_GET['action'])){
             break;
         case 'server_list':
 
-            
+
+            echo json_encode($return);
+            break;
+        case 'delete_system_user':
+
+            $post_data = tools::post_data();    // 取得 POST DATA
+
+            MYPDO::$table = 'system_user';
+            MYPDO::$where = ['id' => $post_data['id']];
+            $del_count = MYPDO::del();
+
+            $return['success'] = true;
+            $return['msg'] = '刪除資料成功';
+            $return['test'] = $del_count;
+
+            if ($del_count == 1){
+                $return['success'] = true;
+            }else{
+                $return['success'] = false;
+                $return['msg'] = '刪除資料異常';
+            }
+
             echo json_encode($return);
             break;
     }
