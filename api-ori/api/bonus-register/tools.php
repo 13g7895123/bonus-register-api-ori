@@ -85,6 +85,16 @@ class tools
         return $post_data;
     }
 
+    public static function login_log($data){
+        $table_name = ($data['is_admin'] == 0) ? 'system_user' : 'system_admin';
+        MYPDO::$table = $table_name;
+        MYPDO::$data = ['last_login_time' => date('Y/m/d H:i:s')];
+        MYPDO::$where = ['id' => $data['id']];
+        MYPDO::save();
+        
+        return;
+    }
+
     public static function test()
     {
         echo 'test123';

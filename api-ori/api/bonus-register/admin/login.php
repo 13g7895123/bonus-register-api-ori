@@ -35,6 +35,10 @@ if (isset($_GET['action'])){
                     $return['user']['account'] = $post_data['account'];
                     $return['user']['name'] = $post_data['account'];
                 }else{
+                    $login_log['is_admin'] = 1;
+                    $login_log['id'] = $result['id'];
+                    tools::login_log($login_log);
+
                     $return['test'] = 3;
                     $return['success'] = true;
                     $return['user']['id'] = $result['id'];
@@ -43,6 +47,10 @@ if (isset($_GET['action'])){
                     $return['user']['is_admin'] = 1;
                 }
             }else{
+                $login_log['is_admin'] = 0;
+                $login_log['id'] = $result['id'];
+                tools::login_log($login_log);
+
                 $return['success'] = true;
                 $return['user']['id'] = $result['id'];
                 $return['user']['account'] = $result['account'];
