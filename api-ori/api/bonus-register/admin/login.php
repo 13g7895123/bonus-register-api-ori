@@ -43,7 +43,7 @@ if (isset($_GET['action'])){
                     $return['success'] = true;
                     $return['user']['id'] = $result['id'];
                     $return['user']['account'] = $result['account'];
-                    $return['user']['name'] = $result['password'];
+                    $return['user']['name'] = $result['name'];
                     $return['user']['is_admin'] = 1;
                 }
             }else{
@@ -54,7 +54,7 @@ if (isset($_GET['action'])){
                 $return['success'] = true;
                 $return['user']['id'] = $result['id'];
                 $return['user']['account'] = $result['account'];
-                $return['user']['name'] = $result['password'];
+                $return['user']['name'] = $result['name'];
                 $return['user']['is_admin'] = 0;
             }
 
