@@ -86,12 +86,15 @@ class tools
     }
 
     public static function login_log($data){
+
+        date_default_timezone_set("Asia/Taipei");   // 設定時區
+
         $table_name = ($data['is_admin'] == 0) ? 'system_user' : 'system_admin';
         MYPDO::$table = $table_name;
         MYPDO::$data = ['last_login_time' => date('Y/m/d H:i:s')];
         MYPDO::$where = ['id' => $data['id']];
         MYPDO::save();
-        
+
         return;
     }
 
