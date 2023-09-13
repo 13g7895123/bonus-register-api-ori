@@ -28,12 +28,17 @@ if (isset($_GET['action'])){
             echo json_encode($return);
             break;
         case 'server_list':
+            $post_data = tools::post_data();    // 取得 POST DATA
 
+            MYPDO::$table = 'server';
+            $results = MYPDO::select();
 
+            $return['success'] = true;
+            $return['data'] = $results;
+            $return['post_data'] = $post_data;
             echo json_encode($return);
             break;
         case 'delete_system_user':
-
             $post_data = tools::post_data();    // 取得 POST DATA
 
             MYPDO::$table = 'system_user';
