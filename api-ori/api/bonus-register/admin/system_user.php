@@ -53,20 +53,21 @@ if (isset($_GET['action'])){
             ];
             $insert_id = MYPDO::insert();
 
-            foreach ($server_list as $key => $val){
-                $server_data = tools::server_data($val);
+            // foreach ($server_list as $key => $val){
+            //     $server_data = tools::server_data($val);
 
-                MYPDO::$table = 'server_management';
-                MYPDO::$data = [
-                    'system_user_id' => $insert_id,
-                    'server_id' => $server_data['server_data'],
-                    'server_name' => $server_data['server_name'],
-                    'server_code_name' => $server_data['server_code_name'],
-                ];
-                $insert_id = MYPDO::insert();
-            }
+            //     MYPDO::$table = 'server_management';
+            //     MYPDO::$data = [
+            //         'system_user_id' => $insert_id,
+            //         'server_id' => $server_data['server_data'],
+            //         'server_name' => $server_data['server_name'],
+            //         'server_code_name' => $server_data['server_code_name'],
+            //     ];
+            //     $insert_id = MYPDO::insert();
+            // }
             $return['success'] = 'true';
             $return['post_data'] = $post_data;
+            $return['test'] = $server_list[0];
 
             echo json_encode($return);
             break;
