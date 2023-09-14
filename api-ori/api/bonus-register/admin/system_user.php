@@ -99,9 +99,12 @@ if (isset($_GET['action'])){
             MYPDO::$where = ['id' => $post_data['id']];
             $del_count = MYPDO::del();
 
+            MYPDO::$table = 'server_management';
+            MYPDO::$where = ['system_user_id' => $post_data['id']];
+            $del_count = MYPDO::del();
+
             $return['success'] = true;
             $return['msg'] = '刪除資料成功';
-            $return['test'] = $del_count;
 
             if ($del_count == 1){
                 $return['success'] = true;
