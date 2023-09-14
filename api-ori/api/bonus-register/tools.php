@@ -98,6 +98,18 @@ class tools
         return;
     }
 
+    public static function server_data($data){
+        $server_text = $data['server_text'];
+        $server_code_name = explode(']', explode('[', $server_text)[1])[0];
+        $server_id = SYSAction::SQL_Data('server', 'code_name', $server_code_name, 'id');
+        $server_name = SYSAction::SQL_Data('server', 'id', $server_id, 'name');
+        $return_data = [];
+        $return_data['server_id'] = $server_id;
+        $return_data['server_name'] = $server_name;
+        $return_data['server_code_name'] = $server_code_name;
+        return $return_data;
+    }
+
     public static function test()
     {
         echo 'test123';

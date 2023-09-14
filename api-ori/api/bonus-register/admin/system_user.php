@@ -40,26 +40,31 @@ if (isset($_GET['action'])){
             break;
         case 'add_system_user':
             $post_data = tools::post_data();    // 取得 POST DATA
+            $server_list = $post_data['server'];
+            $server_count = count($server_list);
 
-            // MYPDO::$table = 'system_user';
-            // MYPDO::$data = [
-            //     'name' => $post_data['name'],
-            //     'account' => $post_data['account'],
-            //     'password' => $post_data['password'],
-            //     'switch' => $post_data['switch'],
-            //     'last_login_time' => $post_data['last_login_time'],
-            // ];
-            // $insert_id = MYPDO::insert();
+            MYPDO::$table = 'system_user';
+            MYPDO::$data = [
+                'name' => $post_data['name'],
+                'account' => $post_data['account'],
+                'password' => $post_data['password'],
+                'manage_server_count' => $server_count,
+                'switch' => $post_data['switch'],
+            ];
+            $insert_id = MYPDO::insert();
 
-            // if ($insert_id > 0){
-            //     $return['success'] = 'true';
-            //     $return['msg'] = '新增資料成功';
-            //     $return['insert_id'] = $insert_id;
-            // }else{
-            //     $return['success'] = 'true';
-            //     $return['msg'] = '寫入資料庫錯誤';
-            // }
+            foreach ($server_list as $key => $val){
+                $server_data = tools::server_data($val);
 
+                MYPDO::$table = 'server_management';
+                MYPDO::$data = [
+                    'system_user_id' => $insert_id,
+                    'server_id' => $server_data['server_data'],
+                    'server_name' => $server_data['server_name'],
+                    'server_code_name' => $server_data['server_code_name'],
+                ];
+                $insert_id = MYPDO::insert();
+            }
             $return['success'] = 'true';
             $return['post_data'] = $post_data;
 
