@@ -36,6 +36,17 @@ if (isset($_GET['action'])){
             MYPDO::$where = ['id' => $post_data['id']];
             $result = MYPDO::first();
 
+            MYPDO::$table = 'server_management';
+            MYPDO::$where = ['system_user_id' => $post_data['id']];
+            $results = MYPDO::select();
+
+            $server_text_arr = [];
+            foreach ($results as $key => $val){
+                $server_text = $val['server_name'].'['.$val['server_code'].']';
+                array_push($server_text_arr, $server_text);
+            }
+            $result['server'] = $server_text_arr;
+
             if (empty($result)){
                 $return['success'] = false;
                 $return['msg'] = '查無資料';
