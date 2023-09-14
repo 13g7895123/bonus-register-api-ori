@@ -64,7 +64,7 @@ if (isset($_GET['action'])){
                     'server_name' => $server_data['server_name'],
                     'server_code_name' => $server_data['server_code_name'],
                 ];
-                $insert_id = MYPDO::insert();
+                $sm_insert_id = MYPDO::insert();
             }
             $return['success'] = 'true';
             $return['post_data'] = $post_data;
