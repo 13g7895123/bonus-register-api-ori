@@ -46,8 +46,12 @@ if (isset($_GET['action'])){
             echo json_encode($return);
             break;
         case 'add_player_user':
-        
             $post_data = tools::post_data();    // 取得 POST DATA
+
+            $server_text = $post_data['serverText'];
+            $server_code_name = explode(']', explode('[', $server_text)[1])[0];
+            $server_id = SYSAction::SQL_Data('server', 'code_name', $server_code_name, 'id');
+            $server_name = SYSAction::SQL_Data('server', 'id', $server_id, 'name');
             
             MYPDO::$table = 'player_user';
             MYPDO::$data = [
@@ -55,6 +59,9 @@ if (isset($_GET['action'])){
                 'password' => $post_data['password'],
                 'phone' => $post_data['phone'],
                 'birthday' => $post_data['birthday'],
+                'server_id' => $server_id,
+                'server_name' => $server_name,
+                'server_code_name' => $server_code_name,
                 'switch' => 1,
             ];
             $insert_id = MYPDO::insert();
