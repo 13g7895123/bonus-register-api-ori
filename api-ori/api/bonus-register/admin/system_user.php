@@ -59,7 +59,7 @@ if (isset($_GET['action'])){
                 MYPDO::$table = 'server_management';
                 MYPDO::$data = [
                     'system_user_id' => $insert_id,
-                    'server_id' => $server_data['server_data'],
+                    'server_id' => $server_data['server_id'],
                     'server_name' => $server_data['server_name'],
                     'server_code_name' => $server_data['server_code_name'],
                 ];
