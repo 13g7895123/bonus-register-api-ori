@@ -1,5 +1,7 @@
 <?php
 
+include_once(__DIR__ . '/../../../__Class/ClassLoad.php');
+include_once(__DIR__ . '/../config.php');
 class tools
 {
     // 簡訊-歐買尬
