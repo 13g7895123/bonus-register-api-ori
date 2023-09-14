@@ -52,19 +52,19 @@ if (isset($_GET['action'])){
                 'switch' => $post_data['switch'],
             ];
             $insert_id = MYPDO::insert();
-            $server_data = tools::server_data($server_list[0]);
-            // foreach ($server_list as $key => $val){
-            //     $server_data = tools::server_data($val);
+            // $server_data = tools::server_data($server_list[0]);
+            foreach ($server_list as $key => $val){
+                $server_data = tools::server_data($val);
 
-            //     MYPDO::$table = 'server_management';
-            //     MYPDO::$data = [
-            //         'system_user_id' => $insert_id,
-            //         'server_id' => $server_data['server_data'],
-            //         'server_name' => $server_data['server_name'],
-            //         'server_code_name' => $server_data['server_code_name'],
-            //     ];
-            //     $insert_id = MYPDO::insert();
-            // }
+                MYPDO::$table = 'server_management';
+                MYPDO::$data = [
+                    'system_user_id' => $insert_id,
+                    'server_id' => $server_data['server_data'],
+                    'server_name' => $server_data['server_name'],
+                    'server_code_name' => $server_data['server_code_name'],
+                ];
+                $insert_id = MYPDO::insert();
+            }
             $return['success'] = 'true';
             $return['post_data'] = $post_data;
             $return['test'] = $server_list[0];
