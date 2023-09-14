@@ -53,6 +53,7 @@ if (isset($_GET['action'])){
             }else{
                 $return['success'] = true;
                 $return['data'] = $result;
+                $return['test'] = $server_text_arr;
             }
 
             echo json_encode($return);
