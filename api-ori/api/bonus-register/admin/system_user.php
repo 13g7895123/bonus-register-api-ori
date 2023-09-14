@@ -34,14 +34,14 @@ if (isset($_GET['action'])){
 
             MYPDO::$table = 'system_user';
             MYPDO::$where = ['id' => $post_data['id']];
-            $results = MYPDO::select();
+            $result = MYPDO::first();
 
-            if (empty($results)){
+            if (empty($result)){
                 $return['success'] = false;
                 $return['msg'] = '查無資料';
             }else{
                 $return['success'] = true;
-                $return['data'] = $results;
+                $return['data'] = $result;
             }
 
             echo json_encode($return);
