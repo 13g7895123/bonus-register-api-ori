@@ -42,7 +42,7 @@ if (isset($_GET['action'])){
 
             $server_text_arr = [];
             foreach ($results as $key => $val){
-                $server_text = $val['server_name'].'['.$val['server_code'].']';
+                $server_text = $val['server_name'].'['.$val['server_code_name'].']';
                 array_push($server_text_arr, $server_text);
             }
             $result['server'] = $server_text_arr;
