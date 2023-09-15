@@ -139,6 +139,7 @@ if (isset($_GET['action'])){
                     }
                     # 將檔案移至指定位置
                     move_uploaded_file($file, $dest);
+                    echo 'finished';
                 }
             } else {
             echo '錯誤代碼：' . $_FILES['file']['error'] . '<br/>';
