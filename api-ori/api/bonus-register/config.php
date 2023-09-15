@@ -13,14 +13,14 @@ MYPDO::$user = 'bonus_register_remote';
 MYPDO::$pwd = '820820';
 
 // CORS
-// $url_arr = ['http://170.187.229.132:9054/'];
-// $http_origin = $_SERVER['HTTP_ORIGIN'];
+$url_arr = ['http://170.187.229.132:9055/'];
+$http_origin = $_SERVER['HTTP_ORIGIN'];
 
-// if (in_array($http_origin, $url_arr)){
-//     header("Access-Control-Allow-Origin: $http_origin");
-// }
+if (in_array($http_origin, $url_arr)){
+    header("Access-Control-Allow-Origin: $http_origin");
+}
 
-// header('Access-Control-Allow-Headers: Content-Type');
-// header('Access-Control-Allow-Headers: Auth');
+header('Access-Control-Allow-Headers: Content-Type');
+header('Access-Control-Allow-Headers: Auth');
 
 ?>
