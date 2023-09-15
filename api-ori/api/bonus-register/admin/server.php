@@ -119,30 +119,30 @@ if (isset($_GET['action'])){
             echo json_encode($return);
             break;
         case 'bg_img_upload':
-            $file_info = $_FILES['file'];
-            echo json_encode($file_info);
-            // if ($_FILES['file']['error'] === UPLOAD_ERR_OK){
-            //     echo '檔案名稱: ' . $_FILES['file']['name'] . '<br/>';
-            //     echo '檔案類型: ' . $_FILES['file']['type'] . '<br/>';
-            //     echo '檔案大小: ' . ($_FILES['file']['size'] / 1024) . ' KB<br/>';
-            //     echo '暫存名稱: ' . $_FILES['file']['tmp_name'] . '<br/>';
+            // $file_info = $_FILES['file'];
+            // echo json_encode($file_info);
+            if ($_FILES['file']['error'] === UPLOAD_ERR_OK){
+                echo '檔案名稱: ' . $_FILES['file']['name'] . '<br/>';
+                echo '檔案類型: ' . $_FILES['file']['type'] . '<br/>';
+                echo '檔案大小: ' . ($_FILES['file']['size'] / 1024) . ' KB<br/>';
+                echo '暫存名稱: ' . $_FILES['file']['tmp_name'] . '<br/>';
               
-            //     # 檢查檔案是否已經存在
-            //     if (file_exists('upload/' . $_FILES['file']['name'])){
-            //       echo '檔案已存在。<br/>';
-            //     } else {
-            //         $file = $_FILES['file']['tmp_name'];
-            //         $dest = 'upload/' . $_FILES['file']['name'];
+                # 檢查檔案是否已經存在
+                if (file_exists('upload/' . $_FILES['file']['name'])){
+                  echo '檔案已存在。<br/>';
+                } else {
+                    $file = $_FILES['file']['tmp_name'];
+                    $dest = 'upload/' . $_FILES['file']['name'];
               
-            //         if ( !file_exists($dest) ){
-            //             mkdir($dest,0775,true);
-            //         }
-            //         # 將檔案移至指定位置
-            //         move_uploaded_file($file, $dest);
-            //     }
-            // } else {
-            // echo '錯誤代碼：' . $_FILES['file']['error'] . '<br/>';
-            // }
+                    if ( !file_exists($dest) ){
+                        mkdir($dest,0775,true);
+                    }
+                    # 將檔案移至指定位置
+                    move_uploaded_file($file, $dest);
+                }
+            } else {
+            echo '錯誤代碼：' . $_FILES['file']['error'] . '<br/>';
+            }
             break;
     }
 }
