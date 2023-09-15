@@ -136,6 +136,7 @@ if (isset($_GET['action'])){
               
                     if ( !file_exists($dest) ){
                         mkdir($dest,0775,true);
+                        echo 'build file';
                     }
                     # 將檔案移至指定位置
                     move_uploaded_file($file, $dest);
