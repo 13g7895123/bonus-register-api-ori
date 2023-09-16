@@ -141,7 +141,7 @@ if (isset($_GET['action'])){
                     echo 'finished';
                 }
             } else {
-            echo '錯誤代碼：' . $_FILES['file']['error'] . '<br/>';
+                echo '錯誤代碼：' . $_FILES['file']['error'] . '<br/>';
             }
             break;
     }
