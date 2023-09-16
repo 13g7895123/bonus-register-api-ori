@@ -119,10 +119,6 @@ if (isset($_GET['action'])){
             echo json_encode($return);
             break;
         case 'img_info':
-
-            echo json_encode($_POST);
-            die();
-
             $server_id = $_POST['server_id'];
             $bg_img_name = $_POST['bg_img_name'];
             $bg_img_path = $_POST['bg_img_path'];
