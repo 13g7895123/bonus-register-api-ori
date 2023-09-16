@@ -20,7 +20,7 @@ if (isset($_GET['action'])){
             $results = MYPDO::select();
 
             foreach ($results as $rkey => $rval){
-                $results[$rkey]['bg_img_path'] = $domain.$rval;
+                $results[$rkey]['bg_img_path'] = $domain.$rval['bg_img_path'];
             }
 
             if (empty($results)){
