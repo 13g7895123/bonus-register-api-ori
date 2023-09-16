@@ -118,31 +118,26 @@ if (isset($_GET['action'])){
 
             echo json_encode($return);
             break;
-        case 'bg_img_upload':
-            if ($_FILES['file']['error'] === UPLOAD_ERR_OK){
-                echo '檔案名稱: ' . $_FILES['file']['name'] . '<br/>';
-                echo '檔案類型: ' . $_FILES['file']['type'] . '<br/>';
-                echo '檔案大小: ' . ($_FILES['file']['size'] / 1024) . ' KB<br/>';
-                echo '暫存名稱: ' . $_FILES['file']['tmp_name'] . '<br/>';
-              
-                # 檢查檔案是否已經存在
-                if (file_exists('upload/' . $_FILES['file']['name'])){
-                  echo '檔案已存在。<br/>';
-                } else { 
-                    $file = $_FILES['file']['tmp_name'];
-                    $dest = 'upload/' . $_FILES['file']['name'];
-              
-                    if ( !file_exists($dest) ){
-                        mkdir($dest,0775,true);
-                        echo 'build file';
-                    }
-                    # 將檔案移至指定位置
-                    move_uploaded_file($file, $dest);
-                    echo 'finished';
-                }
-            } else {
-                echo '錯誤代碼：' . $_FILES['file']['error'] . '<br/>';
+        case 'img_info':
+            $server_id = $_POST['server_id'];
+            $bg_img_name = $_POST['bg_img_name'];
+            $bg_img_path = $_POST['bg_img_path'];
+
+            MYPDO::$table = 'server';
+            MYPDO::$data = [
+                'bg_img_name' => $bg_img_name,
+                'bg_img_path' => $bg_img_path,
+            ];
+            MYPDO::$where = ['id' => $server_id];
+            $save_id = MYPDO::save();
+
+            if ($save_id > 0){
+                $response['success'] = true;
+            }else{
+                $response['success'] = false;
             }
+
+            echo json_encode($response);
             break;
     }
 }
