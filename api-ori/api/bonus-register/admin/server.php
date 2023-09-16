@@ -154,6 +154,7 @@ if (isset($_GET['action'])){
                 $return['success'] = true;
                 $return['data'] = $domain.$result['bg_img_path'];
             }
+            $return['bg_img_path'] = $result['bg_img_path'];
 
             echo json_encode($return);
             break;
