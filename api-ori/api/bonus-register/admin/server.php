@@ -146,7 +146,7 @@ if (isset($_GET['action'])){
             MYPDO::$where = ['id' => $post_data['id']];
             $result = MYPDO::first();
 
-            if (empty($result)){
+            if (is_null($result['bg_img_path'])){
                 $return['success'] = false;
                 $return['msg'] = '查無資料';
             }else{
@@ -154,7 +154,6 @@ if (isset($_GET['action'])){
                 $return['success'] = true;
                 $return['data'] = $domain.$result['bg_img_path'];
             }
-            $return['bg_img_path'] = $result['bg_img_path'];
 
             echo json_encode($return);
             break;
