@@ -118,31 +118,31 @@ if (isset($_GET['action'])){
 
             echo json_encode($return);
             break;
-        // case 'img_info':
+        case 'img_info':
 
-            // echo json_encode($_POST);
-            // die();
+            echo json_encode($_POST);
+            die();
 
-            // $server_id = $_POST['server_id'];
-            // $bg_img_name = $_POST['bg_img_name'];
-            // $bg_img_path = $_POST['bg_img_path'];
+            $server_id = $_POST['server_id'];
+            $bg_img_name = $_POST['bg_img_name'];
+            $bg_img_path = $_POST['bg_img_path'];
 
-            // MYPDO::$table = 'server';
-            // MYPDO::$data = [
-            //     'bg_img_name' => $bg_img_name,
-            //     'bg_img_path' => $bg_img_path,
-            // ];
-            // MYPDO::$where = ['id' => $server_id];
-            // $save_id = MYPDO::save();
+            MYPDO::$table = 'server';
+            MYPDO::$data = [
+                'bg_img_name' => $bg_img_name,
+                'bg_img_path' => $bg_img_path,
+            ];
+            MYPDO::$where = ['id' => $server_id];
+            $save_id = MYPDO::save();
 
-            // if ($save_id > 0){
-            //     $response['success'] = true;
-            // }else{
-            //     $response['success'] = false;
-            // }
+            if ($save_id > 0){
+                $response['success'] = true;
+            }else{
+                $response['success'] = false;
+            }
 
-            // echo json_encode($response);
-            // break;
+            echo json_encode($response);
+            break;
     }
 }
 ?>
