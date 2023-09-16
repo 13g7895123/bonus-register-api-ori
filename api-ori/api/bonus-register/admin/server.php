@@ -7,6 +7,8 @@ include_once(__DIR__ . '/../../../__Class/ClassLoad.php');
 include_once(__DIR__ . '/../config.php');
 include_once(__DIR__ . '/../tools.php');
 
+$domain = 'http://missa.mercylife.cc';
+
 if (isset($_GET['action'])){
     switch($_GET['action']){
         case 'server':
@@ -16,6 +18,10 @@ if (isset($_GET['action'])){
 
             MYPDO::$table = 'server';
             $results = MYPDO::select();
+
+            foreach ($results as $rkey => $rval){
+                $results[$rkey] = $domain.$rval;
+            }
 
             if (empty($results)){
                 $return['success'] = false;
@@ -150,7 +156,6 @@ if (isset($_GET['action'])){
                 $return['success'] = false;
                 $return['msg'] = '查無資料';
             }else{
-                $domain = 'http://missa.mercylife.cc';
                 $return['success'] = true;
                 $return['data'] = $domain.$result['bg_img_path'];
             }
