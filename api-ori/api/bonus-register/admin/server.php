@@ -119,8 +119,6 @@ if (isset($_GET['action'])){
             echo json_encode($return);
             break;
         case 'bg_img_upload':
-            // $file_info = $_FILES['file'];
-            // echo json_encode($file_info);
             if ($_FILES['file']['error'] === UPLOAD_ERR_OK){
                 echo '檔案名稱: ' . $_FILES['file']['name'] . '<br/>';
                 echo '檔案類型: ' . $_FILES['file']['type'] . '<br/>';
@@ -130,7 +128,7 @@ if (isset($_GET['action'])){
                 # 檢查檔案是否已經存在
                 if (file_exists('upload/' . $_FILES['file']['name'])){
                   echo '檔案已存在。<br/>';
-                } else {
+                } else { 
                     $file = $_FILES['file']['tmp_name'];
                     $dest = 'upload/' . $_FILES['file']['name'];
               
