@@ -28,7 +28,6 @@ if (isset($_GET['action'])){
             echo json_encode($return);
             break;
         case 'get_server':     // 透過ID查詢資料
-
             $post_data = tools::post_data();    // 取得 POST DATA
 
             MYPDO::$table = 'server';
@@ -98,7 +97,6 @@ if (isset($_GET['action'])){
             echo json_encode($return);
             break;
         case 'delete_server':
-
             $post_data = tools::post_data();    // 取得 POST DATA
 
             MYPDO::$table = 'server';
@@ -133,11 +131,31 @@ if (isset($_GET['action'])){
 
             if ($save_id > 0){
                 $response['success'] = true;
+                $response['msg'] = '上傳檔案成功';
             }else{
                 $response['success'] = false;
+                $response['msg'] = '上傳檔案失敗';
             }
 
             echo json_encode($response);
+            break;
+        case 'get_bg_img':
+            $post_data = tools::post_data();    // 取得 POST DATA
+
+            MYPDO::$table = 'server';
+            MYPDO::$where = ['id' => $post_data['id']];
+            $result = MYPDO::first();
+
+            if (empty($result)){
+                $return['success'] = false;
+                $return['msg'] = '查無資料';
+            }else{
+                $domain = 'http://missa.mercylife.cc';
+                $return['success'] = true;
+                $return['data'] = $domain.$result['bg_img_path'];
+            }
+
+            echo json_encode($return);
             break;
     }
 }
