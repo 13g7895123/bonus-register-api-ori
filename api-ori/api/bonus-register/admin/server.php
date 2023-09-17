@@ -21,7 +21,7 @@ if (isset($_GET['action'])){
 
             foreach ($results as $rkey => $rval){
                 if (is_null($rval['bg_img_path'])){
-                    $results[$rkey]['bg_img_path'] = $domain.'	/img_upload/server/default/bg.jpg';
+                    $results[$rkey]['bg_img_path'] = $domain.'/img_upload/server/default/bg.jpg';
                 }else{
                     $results[$rkey]['bg_img_path'] = $domain.$rval['bg_img_path'];
                 }
@@ -63,6 +63,7 @@ if (isset($_GET['action'])){
                 'name' => $post_data['name'],
                 'code_name' => $post_data['code_name'],
                 'max_num' => $post_data['max_num'],
+                'bg_img_path' => '/img_upload/server/default/bg.jpg',
                 'db_name' => $post_data['db_name'],
                 'db_ip' => $post_data['db_ip'],
                 'db_port' => $post_data['db_port'],
