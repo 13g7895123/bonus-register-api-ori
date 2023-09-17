@@ -155,6 +155,7 @@ if (isset($_GET['action'])){
             if (is_null($result['bg_img_path'])){
                 $return['success'] = false;
                 $return['msg'] = '查無資料';
+                $return['data'] = $domain.'	/img_upload/server/default/bg.jpg';
             }else{
                 $return['success'] = true;
                 $return['data'] = $domain.$result['bg_img_path'];
