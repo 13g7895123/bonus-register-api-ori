@@ -166,6 +166,46 @@ if (isset($_GET['action'])){
 
             echo json_encode($return);
             break;
+        case 'edit_msg':
+            $post_data = tools::post_data();    // 取得 POST DATA
+            // $server_list = $post_data['server'];
+            // $server_count = count($server_list);
+
+            // MYPDO::$table = 'system_user';
+            // MYPDO::$data = [
+            //     'name' => $post_data['name'],
+            //     'account' => $post_data['account'],
+            //     'password' => $post_data['password'],
+            //     'manage_server_count' => $server_count,
+            //     'switch' => $post_data['switch'],
+            // ];
+            // MYPDO::$where = ['id' => $post_data['id']];
+            // $save_id = MYPDO::save();
+
+            // MYPDO::$table = 'server_management';
+            // MYPDO::$where = ['system_user_id' => $post_data['id']];
+            // MYPDO::del();
+
+            // foreach ($server_list as $key => $val){
+            //     $server_data = tools::server_data($val);
+
+            //     MYPDO::$table = 'server_management';
+            //     MYPDO::$data = [
+            //         'system_user_id' => $post_data['id'],
+            //         'system_user_account' => $post_data['account'],
+            //         'server_id' => $server_data['server_id'],
+            //         'server_name' => $server_data['server_name'],
+            //         'server_code_name' => $server_data['server_code_name'],
+            //     ];
+            //     $sm_insert_id = MYPDO::insert();
+            // }
+
+            $return['success'] = 'true';
+            $return['data'] = $results;
+            $return['post_data'] = $post_data;
+            
+            echo json_encode($return);
+            break;
     }
 }
 ?>
