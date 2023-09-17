@@ -26,7 +26,8 @@ if (isset($_GET['action'])){
 
                 if (!empty($result)){
                     $return['success'] = true;
-                    $return['data'] = $result['name'];
+                    $return['data']['name'] = $result['name'];
+                    $return['data']['bg'] = $result['bg_img_path'];
                 }else{
                     $return['success'] = false;
                     $return['msg'] = '伺服器不存在';
