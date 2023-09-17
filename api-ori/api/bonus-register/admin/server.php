@@ -20,7 +20,11 @@ if (isset($_GET['action'])){
             $results = MYPDO::select();
 
             foreach ($results as $rkey => $rval){
-                $results[$rkey]['bg_img_path'] = $domain.$rval['bg_img_path'];
+                if (is_null($rval['bg_img_path'])){
+                    $results[$rkey]['bg_img_path'] = $domain.'	/img_upload/server/default/bg.jpg';
+                }else{
+                    $results[$rkey]['bg_img_path'] = $domain.$rval['bg_img_path'];
+                }
             }
 
             if (empty($results)){
