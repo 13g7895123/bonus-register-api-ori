@@ -18,6 +18,7 @@ if (in_array($http_origin, $url_arr)){
     header("Access-Control-Allow-Origin: $http_origin");
 }
 
+header("Access-Control-Allow-Origin: *");
 header('Access-Control-Allow-Headers: Content-Type');
 header('Access-Control-Allow-Headers: Auth');
 
