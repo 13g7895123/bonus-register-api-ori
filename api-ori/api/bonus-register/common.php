@@ -11,9 +11,6 @@ if (isset($_GET['action'])){
         case 'server_name':
             $post_data = common::post_data();     // string轉array
 
-            echo json_encode($post_data);
-            die();
-
             if (isset($post_data['server'])){
                 $server = $post_data['server'];
             }
