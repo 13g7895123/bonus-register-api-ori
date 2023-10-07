@@ -30,6 +30,7 @@ if (isset($_GET['action'])){
                 }else{
                     $return['success'] = false;
                     $return['msg'] = '伺服器不存在';
+                    $return['server'] = $server;
                 }
 
             }else{
