@@ -2,6 +2,10 @@
 include_once(__DIR__ . '/../../__Class/ClassLoad.php');
 include_once('./config.php');
 include_once('./tools.php');
+include_once('./common_class.php');
+
+// 引入DB資訊
+common::db_config();
 
 if (isset($_GET['action'])){
     switch($_GET['action']){
