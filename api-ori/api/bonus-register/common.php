@@ -2,15 +2,14 @@
 include_once(__DIR__ . '/../../__Class/ClassLoad.php');
 include_once('./config.php');
 include_once('./tools.php');
+include_once('./common_class.php');
 
 error_reporting(E_ERROR | E_PARSE);
 
 if (isset($_GET['action'])){
     switch($_GET['action']){
         case 'server_name':
-            // 取得 POST DATA
-            $json_data = file_get_contents('php://input');  // string
-            $post_data = json_decode($json_data, true);     // string轉array
+            $post_data = common::post_data();     // string轉array
 
             if (isset($post_data['server'])){
                 $server = $post_data['server'];
