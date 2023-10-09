@@ -1,7 +1,7 @@
 <?php
 
-include_once(__DIR__ . '/../../../__Class/ClassLoad.php');
-include_once(__DIR__ . '/../config.php');
+include_once(__DIR__ . '/../__Class/ClassLoad.php');
+include_once(__DIR__ . './config.php');
 class tools
 {
     // 簡訊-歐買尬
@@ -87,6 +87,7 @@ class tools
         return $post_data;
     }
 
+    // 登入紀錄
     public static function login_log($data){
 
         date_default_timezone_set("Asia/Taipei");   // 設定時區
@@ -100,6 +101,7 @@ class tools
         return;
     }
 
+    // 取得伺服器資料
     public static function server_data($data){
         $server_text = $data;
         $server_code_name = explode(']', explode('[', $server_text)[1])[0];
@@ -110,6 +112,51 @@ class tools
         $return_data['server_name'] = $server_name;
         $return_data['server_code_name'] = $server_code_name;
         return $return_data;
+    }
+
+    // 生成token
+    public static function token(){
+        $token['token'] = md5(time().'bonus-register');
+        return $token;
+    }
+
+    public static function ip(){
+        if (!empty($_SERVER['HTTP_CLIENT_IP'])){
+            $ip=$_SERVER['HTTP_CLIENT_IP'];
+        }
+        else if (!empty($_SERVER['HTTP_X_FORWARDED_FOR'])){
+            $ip=$_SERVER['HTTP_X_FORWARDED_FOR'];
+        }
+        else{
+            $ip=$_SERVER['REMOTE_ADDR'];
+        }
+        return $ip;
+    }
+
+    public static function velify_token($data){
+        
+        $ip = self::ip();
+
+        MYPDO::$table = 'token';
+        MYPDO::$where = ['ip' => $ip];
+        $result = MYPDO::first();
+        $token = $result['token'];
+
+        if ($data['token'] == $token){
+            $time = $result['create_at_timestamp'];
+            $now_time = time();
+            if ((($now_time - $time) / 60) > 30){
+                $return['success'] = false;
+                $return['msg'] = 'token已過期';
+            }else{
+                $return['success'] = true;
+            }
+        }else{
+            $return['success'] = false;
+            $return['msg'] = 'token錯誤';
+        }
+
+        return $return;
     }
 
     public static function test()
