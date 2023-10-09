@@ -7,6 +7,11 @@ include_once(__DIR__ . '/../../../__Class/ClassLoad.php');
 include_once(__DIR__ . '/../config.php');
 include_once(__DIR__ . '/../tools.php');
 
+// CORS
+header("Access-Control-Allow-Origin: *");
+header('Access-Control-Allow-Headers: Content-Type');
+header('Access-Control-Allow-Headers: Auth');
+
 $domain = 'http://missa.mercylife.cc';
 
 if (isset($_GET['action'])){
