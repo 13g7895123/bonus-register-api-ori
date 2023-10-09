@@ -179,12 +179,12 @@ if (isset($_GET['action'])){
                 $update_id = MYPDO::save();
             }            
 
-            // if ($insert_id > 0 || $update_id > 0){
-            //     $return['success'] = true;
-            //     $return['data'] = $token;
-            // }else{
-            //     $return['success'] = false;
-            // }
+            if ($insert_id > 0 || $update_id > 0){
+                $return['success'] = true;
+                $return['data'] = $token;
+            }else{
+                $return['success'] = false;
+            }
             $return['ins'] = $insert_id;
             $return['upd'] = $update_id;
 
