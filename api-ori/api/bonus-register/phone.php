@@ -7,6 +7,8 @@ include_once('./common_class.php');
 // 引入DB資訊
 common::db_config();
 
+error_reporting(E_ERROR | E_PARSE);
+
 if (isset($_GET['action'])){
     switch($_GET['action']){
         case 'sendCode':
