@@ -11,8 +11,7 @@ if (isset($_GET['action'])){
     switch($_GET['action']){
         case 'register':
             // 取得 POST DATA
-            $json_data = file_get_contents('php://input');  // string
-            $post_data = json_decode($json_data, true);     // string轉array
+            $post_data = common::post_data();
 
             if (isset($post_data['phone'])){
                 $phone = $post_data['phone'];
