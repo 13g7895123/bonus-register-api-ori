@@ -1,7 +1,11 @@
 <?php
 include_once(__DIR__ . '/../../__Class/ClassLoad.php');
+include_once('./common_class.php');
 
 error_reporting(E_ERROR | E_PARSE);
+
+// 引入DB資訊
+common::db_config();
 
 // 時區
 date_default_timezone_set('Asia/Taipei');
