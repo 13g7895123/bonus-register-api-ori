@@ -12,7 +12,7 @@ if (isset($_GET['action'])){
             $type_name = 'server';
             $img_file_name = uuid();
             $extension = explode('.', $_FILES['file']['name'])[1];
-            $img_path = "/"."img_upload/".$type_name.'/'.$img_file_name.'.'.$extension;
+            $img_path = "/"."img/bgImg/".$type_name.'/'.$img_file_name.'.'.$extension;
 
             $full_path = $web_path.$img_path;
             move_uploaded_file($_FILES['file']['tmp_name'], $full_path);
@@ -22,10 +22,23 @@ if (isset($_GET['action'])){
             $db_data['bg_img_name'] = $_FILES['file']['name'];
             $db_data['bg_img_path'] = $img_path;
 
-            $api_url = 'http://170.187.229.132:9091/api/bonus-register/admin/server.php?action=img_info';
-            $response = curl_api($api_url, $db_data);
+            MYPDO::$table = 'server';
+            MYPDO::$data = [
+                'bg_img_name' => $bg_img_name,
+                'bg_img_path' => $bg_img_path,
+            ];
+            MYPDO::$where = ['id' => $server_id];
+            $save_id = MYPDO::save();
 
-            echo $response;
+            if ($save_id > 0){
+                $response['success'] = true;
+                $response['msg'] = '上傳檔案成功';
+            }else{
+                $response['success'] = false;
+                $response['msg'] = '上傳檔案失敗';
+            }
+
+            echo json_encode($response);
             break;
     }
 }
