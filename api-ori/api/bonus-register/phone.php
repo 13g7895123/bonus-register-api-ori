@@ -169,7 +169,6 @@ if (isset($_GET['action'])){
             }else{
                 MYPDO::$table = 'token';
                 MYPDO::$data = [
-                    'ip' => $ip,
                     'token' => $token,
                     'create_at_timestamp' => time(),
                     'create_at' => date("Y-m-d H:i:s")
@@ -178,12 +177,12 @@ if (isset($_GET['action'])){
                 $update_id = MYPDO::save();
             }            
 
-            if ($insert_id > 0 || $update_id > 0){
-                $return['success'] = true;
-                $return['data'] = $token;
-            }else{
-                $return['success'] = false;
-            }
+            // if ($insert_id > 0 || $update_id > 0){
+            //     $return['success'] = true;
+            //     $return['data'] = $token;
+            // }else{
+            //     $return['success'] = false;
+            // }
             $return['ins'] = $insert_id;
             $return['upd'] = $update_id;
 
