@@ -38,6 +38,7 @@ if (isset($_GET['action'])){
                 $response['msg'] = '上傳檔案失敗';
             }
             $response['test'] = $save_id;
+            $response['db_data'] = $db_data;
 
             echo json_encode($response);
             break;
