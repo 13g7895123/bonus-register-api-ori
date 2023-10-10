@@ -12,7 +12,7 @@ if (isset($_GET['action'])){
             $type_name = 'server';
             $img_file_name = uuid();
             $extension = explode('.', $_FILES['file']['name'])[1];
-            $img_path = "/"."img/bgImg/".$type_name.'/'.$img_file_name.'.'.$extension;
+            $img_path = "/"."img/bgImg/".$img_file_name.'.'.$extension;
 
             $full_path = $web_path.$img_path;
             move_uploaded_file($_FILES['file']['tmp_name'], $full_path);
