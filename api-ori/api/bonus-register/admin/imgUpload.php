@@ -37,6 +37,7 @@ if (isset($_GET['action'])){
                 $response['success'] = false;
                 $response['msg'] = '上傳檔案失敗';
             }
+            $response['test'] = $save_id;
 
             echo json_encode($response);
             break;
