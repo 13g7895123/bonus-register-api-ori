@@ -7,12 +7,13 @@ include_once(__DIR__ . '/../tools.php');
 if (isset($_GET['action'])){
     switch ($_GET['action']){
         case 'imgUpload':
-            $web_path = $_SERVER['DOCUMENT_ROOT'];  // 網站根目錄
+            // $web_path = $_SERVER['DOCUMENT_ROOT'];  // 網站根目錄
+            $web_path = '/web/api/bonus-register-api-ori/';
 
             $type_name = 'server';
             $img_file_name = uuid();
             $extension = explode('.', $_FILES['file']['name'])[1];
-            $img_path = "/"."img/bgImg/".$img_file_name.'.'.$extension;
+            $img_path = "img/bgImg/".$img_file_name.'.'.$extension;
 
             $full_path = $web_path.$img_path;
             move_uploaded_file($_FILES['file']['tmp_name'], $full_path);
