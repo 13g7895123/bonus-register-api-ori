@@ -12,7 +12,8 @@ header("Access-Control-Allow-Origin: *");
 header('Access-Control-Allow-Headers: Content-Type');
 header('Access-Control-Allow-Headers: Auth');
 
-$domain = 'http://missa.mercylife.cc';
+// $imgDomain = 'http://missa.mercylife.cc';
+$imgDomain = 'http://tools.mercylife.cc';
 
 if (isset($_GET['action'])){
     switch($_GET['action']){
@@ -26,9 +27,9 @@ if (isset($_GET['action'])){
 
             foreach ($results as $rkey => $rval){
                 if (is_null($rval['bg_img_path'])){
-                    $results[$rkey]['bg_img_path'] = $domain.'/img_upload/server/default/bg.jpg';
+                    $results[$rkey]['bg_img_path'] = $imgDomain.'/bonus-register/imgUpload/img/default/bg.jpg';
                 }else{
-                    $results[$rkey]['bg_img_path'] = $domain.$rval['bg_img_path'];
+                    $results[$rkey]['bg_img_path'] = $imgDomain.$rval['bg_img_path'];
                 }
             }
 
@@ -165,10 +166,10 @@ if (isset($_GET['action'])){
             if (is_null($result['bg_img_path'])){
                 $return['success'] = false;
                 $return['msg'] = '查無資料';
-                $return['data'] = $domain.'	/img_upload/server/default/bg.jpg';
+                $return['data'] = $imgDomain.'	/img_upload/server/default/bg.jpg';
             }else{
                 $return['success'] = true;
-                $return['data'] = $domain.$result['bg_img_path'];
+                $return['data'] = $imgDomain.$result['bg_img_path'];
             }
 
             echo json_encode($return);
