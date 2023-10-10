@@ -39,6 +39,7 @@ if (isset($_GET['action'])){
             }
             $response['test'] = $save_id;
             $response['db_data'] = $db_data;
+            $response['full_path'] = $full_path;
 
             echo json_encode($response);
             break;
