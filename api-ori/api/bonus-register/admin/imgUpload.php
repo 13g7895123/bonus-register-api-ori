@@ -8,7 +8,7 @@ if (isset($_GET['action'])){
     switch ($_GET['action']){
         case 'imgUpload':
             // $web_path = $_SERVER['DOCUMENT_ROOT'];  // 網站根目錄
-            $web_path = '/web/api/bonus-register-api-ori/';
+            $web_path = '/web/api/bonus-register-api-ori/api-ori/';
 
             $type_name = 'server';
             $img_file_name = uuid();
