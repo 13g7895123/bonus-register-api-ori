@@ -19,10 +19,12 @@ if (isset($_GET['action'])){
     switch($_GET['action']){
         case 'server':
             // 取得 POST DATA
-            $json_data = file_get_contents('php://input');  // string
-            $post_data = json_decode($json_data, true);     // string轉array
+            $post_data = tools::post_data();
 
             MYPDO::$table = 'server';
+            MYPDO::$where = [
+                'code_name' => 'code_name'
+            ];
             $results = MYPDO::select();
 
             foreach ($results as $rkey => $rval){

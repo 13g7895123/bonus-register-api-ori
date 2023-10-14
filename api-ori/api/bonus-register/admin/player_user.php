@@ -21,14 +21,21 @@ if (isset($_GET['action'])){
             }
 
             MYPDO::$table = 'player_user';
-
-            if (count($results) > 0){
-                $where_arr = [];
-                foreach ($results as $res){
-                    $where_arr['server_id'] = $res['server_id'];
+            $data_num = count($results);
+            if ($data_num > 0){
+                if ($data_num == 1){
+                    MYPDO::$where = ['server_id' => $results[0]['server_id']];
+                }else{
+                    $where_sql = '';
+                    foreach ($results as $rkey => $rval){
+                        if ($rkey != 0){
+                            $where_sql .= 'or ';
+                        }
+                        $where_sql .= 'server_id = '.$rval['server_id'];
+                    }
+                    MYPDO::$where = $where_sql;
                 }
             }
-            MYPDO::$where = $where_arr;
             $results = MYPDO::select();
 
             if (empty($results)){
