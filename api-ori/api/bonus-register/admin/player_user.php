@@ -12,8 +12,23 @@ if (isset($_GET['action'])){
         case 'player_user':     // 取得所有資料
             // 取得 POST DATA
             $post_data = tools::post_data();
+            
+            /* 取得伺服器 */
+            if ($post_data['userAccount'] != ''){
+                MYPDO::$table = 'server_management';
+                MYPDO::$where = ['system_user_account' => $post_data['userAccount']];
+                $results = MYPDO::select();
+            }
 
             MYPDO::$table = 'player_user';
+
+            if (count($results) > 0){
+                $where_arr = [];
+                foreach ($results as $res){
+                    $where_arr['server_id'] = $res['server_id'];
+                }
+            }
+            MYPDO::$where = $where_arr;
             $results = MYPDO::select();
 
             if (empty($results)){
